@@ -6,7 +6,7 @@ body {
 
 button {
     width: 120px;
-    height: 120px;
+    height: 92px;
     font-size: 24px;
     cursor: pointer;
     text-align: center;
@@ -29,6 +29,7 @@ table {
     font-size: 24px;
     cursor: pointer;
     text-align: center;
+    width: 92px;
 }
 
 #submit:hover {
@@ -80,13 +81,13 @@ table {
     }
 
     button {
-        width: 120px;
-        height: 120px;
+        width: 90px;
+        height: 80px;
         font-size: 18px;
     }
 
     .container {
-        width: 500px;
+        width: 400px;
     }
 
     #display {

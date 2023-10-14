@@ -10,6 +10,9 @@ function Init() {
 
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', () => {
+            if (display.value === 'Invalid Expression') {
+                display.value = ''
+            }
             display.value += buttons[i].textContent
         })
     }
