@@ -43,13 +43,13 @@ function Init() {
         if(result === 'Invalid Expression') {
             return 
         }
-        if (queue.length >= 6) {
+        if (queue.length >= 5) {
             queue.shift()
         }
 
         queue.push(input + " = " + result)
         for(let i = 0; i < queue.length; i++) {
-            histories[i].textContent = queue[i]
+            histories[i].textContent = queue[queue.length-i-1]
         }
     })
 }
