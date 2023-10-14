@@ -6,8 +6,8 @@ function Init() {
     const buttons = document.getElementsByClassName("number")
     const histories = document.getElementsByClassName('history-calculation')
     const submit = document.getElementById('submit')
+    const allowed = '0123456789x/-+.×÷()'
     
-
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', () => {
             if (display.value === 'Invalid Expression') {
@@ -29,29 +29,60 @@ function Init() {
         display.value = ''
     })
 
-    submit.addEventListener('click', () => {
-        if (!IsValidInfix() || display.value.length === 0) {
-            display.value = 'Invalid Expression'
-            return
+    display.addEventListener('input', (event) => {
+        let val = event.target.value 
+        if(val.includes('Invalid Expression')) {
+            val = val.charAt(val.length-1)
         }
+        
+        let sanitized = ''
 
-        const input = display.value.trim()
-        const postfix = ConvertPostFix(input)
-        const result = EvaluatePostfix(postfix)
-        display.value = result
-
-        if(result === 'Invalid Expression') {
-            return 
+        for (let i = 0; i < val.length; i++) {
+            let char = val.charAt(i);
+            if (allowed.includes(char)) {
+                if (char === 'x') char = '×'
+                if (char === '/') char = '÷'
+                
+                sanitized += char;
+            }
         }
-        if (queue.length >= 5) {
-            queue.shift()
-        }
+        display.value = sanitized
+    })
 
-        queue.push(input + " = " + result)
-        for(let i = 0; i < queue.length; i++) {
-            histories[i].textContent = queue[queue.length-i-1]
+    display.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+            event.preventDefault()
+            SubmitExpression(queue, display, histories)
         }
     })
+
+    submit.addEventListener('click', () => {
+        SubmitExpression(queue, display, histories)
+    })
+}
+
+function SubmitExpression(queue, display, histories) {
+    if (!IsValidInfix() || display.value.length === 0) {
+        display.value = 'Invalid Expression'
+        return
+    }
+
+    const input = display.value.trim()
+    const postfix = ConvertPostFix(input)
+    const result = EvaluatePostfix(postfix)
+    display.value = result
+
+    if(result === 'Invalid Expression') {
+        return 
+    }
+    if (queue.length >= 5) {
+        queue.shift()
+    }
+
+    queue.push(input + " = " + result)
+    for(let i = 0; i < queue.length; i++) {
+        histories[i].textContent = queue[queue.length-i-1]
+    }
 }
 
 function IsValidInfix() {
