@@ -51,7 +51,6 @@ function Init() {
         for(let i = 0; i < queue.length; i++) {
             histories[i].textContent = queue[i]
         }
-        //9×9-(8×(8×9)-100)+(100+9(4+7+2))
     })
 }
 
@@ -97,7 +96,13 @@ function ConvertPostFix(input) {
         const isOp = idx >= 0
 
         if (!isOp) {
-            if (c == '(') {st.push(c); continue; }
+            if (c == '(') { 
+                if (i != 0 && isNumeric(input.charAt(i-1))) {
+                    st.push("×")
+                }
+
+                st.push(c); continue; 
+            }
             if (c == ')') {
                 while(st[st.length-1] != '(') {
                     postfix += st.pop() + ","
@@ -143,7 +148,6 @@ function ConvertPostFix(input) {
 
         st.push(c)
     }
-
     return postfix
 }
 
@@ -151,7 +155,6 @@ function EvaluatePostfix(input) {
     input += ")"
     const operators = "×÷-+"
     const qs = input.split(",")
-    console.log(qs)
     const st = []
 
     for(const s of qs) {
