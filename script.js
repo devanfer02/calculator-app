@@ -66,9 +66,13 @@ function IsValidInfix() {
             continue;
         }
 
-        if (c == '(') {
+        if (c === '(') {
             st.push(c)
             continue 
+        }
+
+        if (c === '.') {
+            continue
         }
 
         if (st.length === 0) {
