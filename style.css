@@ -63,15 +63,13 @@ table {
     border-radius: 5px;
 }
 
-.history {
+.history h1 {
     align-items: center;
     text-align: center;
 }
 
-
 .history-calculation {
-    text-align: center;
-    align-items: center;
+    margin-left: 10px;
     font-size: 30px;
 }
 

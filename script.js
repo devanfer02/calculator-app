@@ -111,7 +111,7 @@ function ConvertPostFix(input) {
                 continue
             }
             let value = c
-            while(isNumeric(input.charAt(i + 1))) value += input.charAt(++i)
+            while(isNumeric(input.charAt(i + 1)) || input.charAt(i + 1) === '.') value += input.charAt(++i)
             
             postfix += value + ","
             continue
@@ -167,8 +167,8 @@ function EvaluatePostfix(input) {
             continue
         }
 
-        const num1 = parseInt(st.pop())
-        const num2 = parseInt(st.pop())
+        const num1 = parseFloat(st.pop())
+        const num2 = parseFloat(st.pop())
 
         if (isNaN(num1) || isNaN(num2)) {
             return 'Invalid Expression'
@@ -190,7 +190,7 @@ function EvaluatePostfix(input) {
                 break  
         }
 
-        st.push(hasil.toString())
+        st.push(parseFloat(hasil.toFixed(8)).toString())
     }
 
     st.pop()
