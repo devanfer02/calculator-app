@@ -1,0 +1,95 @@
+body {
+    font-family: 'Poppins', sans-serif;    
+    background-color: #333;
+    display: flex;
+}
+
+button {
+    width: 120px;
+    height: 120px;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+    vertical-align: middle;
+    color: rgb(60, 76, 219);
+}
+
+button:hover {
+    background-color: rgb(60, 76, 219);
+    color: white;
+}
+
+table {
+    margin: 0 auto;
+}
+
+#submit {
+    background-color: #f0a038;
+    color: #fff;
+    font-size: 24px;
+    cursor: pointer;
+    text-align: center;
+}
+
+#submit:hover {
+    background-color: #f78426;
+    color: #fff;
+}
+
+#id {
+    margin-top: 20px;
+}
+
+#display {
+    height: 70px;
+    width: 95%;
+    padding: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    background-color: #333;
+    color: white;
+    font-size: 25px;
+}
+
+.container {
+    width: 600px;
+    margin: 0 auto;
+    padding: 10px;
+    background: #f2f2f2;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.history {
+    align-items: center;
+    text-align: center;
+}
+
+
+.history-calculation {
+    text-align: center;
+    align-items: center;
+    font-size: 30px;
+}
+
+@media (max-width: 768px) {
+    body {
+        display: inline;
+    }
+
+    button {
+        width: 120px;
+        height: 120px;
+        font-size: 18px;
+    }
+
+    .container {
+        width: 500px;
+    }
+
+    #display {
+        width: 95%;
+    }
+} 

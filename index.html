@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+    <link rel="stylesheet" href="style.css">
+    <title>Calculator App</title>
+    <!-- <title>225150600111031_Devan Ferrel_Percobaan10</title> -->
+</head>
+<body>
+    <div class="container">
+        <table>
+            <tr>
+                <td colspan="4">
+                    <input type="text" id="display" >
+                </td>
+            </tr>
+            <tr>
+                <td><button class="number" id="tambah">+</button></td>
+                <td><button class="number" id="kurang">-</button></td>
+                <td><button class="number" id="kali">×</button></td>
+                <td><button class="number" id="bagi">÷</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">7</button></td>
+                <td><button class="number">8</button></td>
+                <td><button class="number">9</button></td>
+                <td><button class="number">(</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">4</button></td>
+                <td><button class="number">5</button></td>
+                <td><button class="number">6</button></td>
+                <td><button class="number">)</button></td>
+            </tr>
+            <tr>
+                <td><button class="number">1</button></td>
+                <td><button class="number">2</button></td>
+                <td><button class="number">3</button></td>
+                <td rowspan="2" id="submit">=</td>
+            </tr>
+            <tr>
+                <td><button class="number">0</button></td>
+                <td><button id="clear">DEL</button></td>
+                <td><button id="all-clear">AC</button></td>
+            </tr>
+        </table>
+        <p id="info"></p>
+    </div>    
+    <div class="container">
+        <div class="history">
+            <h1 class="history-title">
+                History
+            </h1>
+            <hr>
+            <h4 class="history-calculation"></h4>
+            <h4 class="history-calculation"></h4>
+            <h4 class="history-calculation"></h4>
+            <h4 class="history-calculation"></h4>
+            <h4 class="history-calculation"></h4>
+            <h4 class="history-calculation"></h4>
+        </div>
+    </div>
+</body>
+<script src="script.js"></script>
+</html>
