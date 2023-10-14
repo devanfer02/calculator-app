@@ -61,7 +61,7 @@ function IsValidInfix() {
     const st = []
     for(let i = 0; i < input.length; i++) {
         const c = input.charAt(i)
-        if (c != '(' && c != ')') {
+        if (c !== '(' && c !== ')' && c !== '.') {
             containNum = true
             continue;
         }
