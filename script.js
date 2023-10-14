@@ -123,7 +123,7 @@ function ConvertPostFix(input) {
 
         if ((c === "-" && i === 0)||(c === "-" && input.charAt(i-1) === "(")) {
             let value = c;
-            while(isNumeric(input.charAt(i + 1))) value += input.charAt(++i)
+            while(isNumeric(input.charAt(i + 1)) || input.charAt(i + 1) === '.') value += input.charAt(++i)
             postfix += value + ","
             continue
         }
