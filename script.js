@@ -67,12 +67,16 @@ function SubmitExpression(queue, display, histories) {
         return
     }
 
+    if (display.value.includes("n")) {
+        return 
+    }
+
     const input = display.value.trim()
     const postfix = ConvertPostFix(input)
     const result = EvaluatePostfix(postfix)
     display.value = result
 
-    if(result === 'Invalid Expression') {
+    if(result.includes('Invalid Expression')) {
         return 
     }
     if (queue.length >= 5) {
