@@ -137,7 +137,20 @@ function ConvertPostFix(input) {
         if (!isOp) {
             if (c == '(') { 
                 if (i != 0 && isNumeric(input.charAt(i-1))) {
-                    st.push("×")
+                    const opIndex = operators.indexOf(st[st.length-1])
+
+                    if (opIndex < 0) {
+                        st.push("×")
+                    } else {
+                        const top = tingkat[opIndex]
+    
+                        if (top >= 1) {
+                            postfix += st.pop() + ","
+                        }
+    
+                        st.push("×")
+                    }
+
                 }
 
                 st.push(c); continue; 
