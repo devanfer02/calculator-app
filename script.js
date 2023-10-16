@@ -122,11 +122,9 @@ function IsValidInfix() {
 
 function ConvertPostFix(input) {
     const operators = "×÷-+"
-    const tingkat = [1,1,0,0]
 
     const st = []
     let postfix = ""
-    let minus = false
     st.push('(')
     input += ')'
     for(let i = 0; i < input.length; i++) {
@@ -137,20 +135,7 @@ function ConvertPostFix(input) {
         if (!isOp) {
             if (c == '(') { 
                 if (i != 0 && isNumeric(input.charAt(i-1))) {
-                    const opIndex = operators.indexOf(st[st.length-1])
-
-                    if (opIndex < 0) {
-                        st.push("×")
-                    } else {
-                        const top = tingkat[opIndex]
-    
-                        if (top >= 1) {
-                            postfix += st.pop() + ","
-                        }
-    
-                        st.push("×")
-                    }
-
+                    postfix = ConvertOp(st, postfix, "×")
                 }
 
                 st.push(c); continue; 
@@ -184,21 +169,7 @@ function ConvertPostFix(input) {
             continue
         }
 
-        const opIndex = operators.indexOf(st[st.length-1])
-
-        if (opIndex < 0) {
-            st.push(c)
-            continue
-        }
-
-        const top = tingkat[opIndex]
-        const scn = tingkat[idx]
-
-        if (top >= scn) {
-            postfix += st.pop() + ","
-        }
-
-        st.push(c)
+        postfix = ConvertOp(st, postfix, c)
     }
     return postfix
 }
@@ -252,6 +223,24 @@ function EvaluatePostfix(input) {
 function isNumeric(str) {
     if (typeof str != "string") return false 
     return !isNaN(str) && !isNaN(parseFloat(str)) 
+}
+
+function ConvertOp(st, postfix, op) {  
+    const operators = "×÷-+"
+    const tingkat = [1,1,0,0]
+
+    const opIndex = operators.indexOf(st[st.length-1])
+
+    if (opIndex >= 0) {
+        const top = tingkat[opIndex]
+
+        if (top >= 1) {
+            postfix += st.pop() + ","
+        }
+    } 
+    st.push(op)
+
+    return postfix
 }
 
 Init()
