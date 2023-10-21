@@ -1,4 +1,4 @@
-function Init() {
+    function Init() {
     const queue = []
     const display = document.getElementById('display')
     const allclear = document.getElementById('all-clear')
@@ -11,6 +11,12 @@ function Init() {
     for (let i = 0; i < buttons.length; i++) {
         buttons[i].addEventListener('click', () => {
             if (display.value === 'Invalid Expression') {
+                display.value = ''
+            }
+            if (buttons[i].textContent === '0' && display.value.length != 0 && display.value.charAt(0) === '0') {
+                return
+            }
+            if(display.value.charAt(0) === '0') {
                 display.value = ''
             }
             display.value += buttons[i].textContent
@@ -33,6 +39,10 @@ function Init() {
         let val = event.target.value 
         if(val.includes('Invalid Expression')) {
             val = val.charAt(val.length-1)
+        }
+
+        if (val.charAt(0) === '0' && val.length >= 2) {
+            val = val.charAt(1)
         }
         
         let sanitized = ''
@@ -78,7 +88,7 @@ function SubmitExpression(queue, display, histories) {
 
     if(result.includes('Invalid Expression')) {
         return 
-    }
+    }   
     if (queue.length >= 5) {
         queue.shift()
     }
@@ -100,7 +110,6 @@ function IsValidInfix() {
             containNum = true
             continue;
         }
-
         if (c === '(') {
             st.push(c)
             continue 
@@ -135,7 +144,7 @@ function ConvertPostFix(input) {
         if (!isOp) {
             if (c == '(') { 
                 if (i != 0 && isNumeric(input.charAt(i-1))) {
-                    postfix = ConvertOp(st, postfix, "×")
+                    postfix = ConvertOp(st, postfix, "×")  
                 }
 
                 st.push(c); continue; 
@@ -235,7 +244,7 @@ function ConvertOp(st, postfix, op) {
         const top = tingkat[opIndex]
 
         if (top >= 1) {
-            postfix += st.pop() + ","
+            postfix += st.pop() + ","       
         }
     } 
     st.push(op)
